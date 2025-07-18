@@ -72,8 +72,8 @@ export function ContactSection() {
     {
       icon: '📧',
       label: '이메일',
-      value: 'bjs@example.com',
-      link: 'mailto:bjs@example.com',
+      value: 'common941211@gmail.com',
+      link: 'mailto:common941211@gmail.com',
     },
     {
       icon: '📱',
@@ -101,11 +101,7 @@ export function ContactSection() {
       label: 'GitHub',
       url: 'https://github.com/user941211',
     },
-    {
-      icon: '💼',
-      label: 'LinkedIn',
-      url: '#',
-    },
+
     {
       icon: '📝',
       label: '블로그',

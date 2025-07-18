@@ -48,6 +48,35 @@ portfolio-next/
 2. **About**: 자기소개 및 핵심 역량
 3. **Skills**: 기술 스택 및 숙련도
 4. **Projects**: 주요 프로젝트 소개
+
+## ⚙️ 환경변수 설정
+
+Contact 폼의 이메일 전송 기능을 사용하려면 다음 환경변수를 설정해야 합니다.
+
+### 1. `.env.local` 파일 생성
+
+프로젝트 루트에 `.env.local` 파일을 생성하고 다음 내용을 추가하세요:
+
+```bash
+# 사이트 URL (Vercel 배포 후 실제 URL로 변경)
+SITE_URL=https://your-project.vercel.app
+
+# Gmail 이메일 설정 (Contact 폼에서 이메일 전송용)
+EMAIL_USER=common941211@gmail.com
+EMAIL_PASS=your-gmail-app-password
+```
+
+### 2. Gmail 앱 비밀번호 생성
+
+1. Gmail 계정 설정 > 보안 > 2단계 인증 활성화
+2. 앱 비밀번호 생성 (16자리 문자)
+3. 생성된 앱 비밀번호를 `EMAIL_PASS`에 입력
+
+### 3. Vercel 환경변수 설정
+
+Vercel 대시보드에서도 동일한 환경변수를 설정해야 합니다:
+- 프로젝트 설정 > Environment Variables
+- `SITE_URL`, `EMAIL_USER`, `EMAIL_PASS` 추가
 5. **Awards**: 수상 경력 및 자격증
 6. **Contact**: 연락처 및 문의 폼
 
