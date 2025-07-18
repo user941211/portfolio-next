@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, Badge, ImagePlaceholder } from '@/components/ui';
+import { Card, Badge } from '@/components/ui';
 
 const stats = [
   { label: '총 경력', value: '2년 1개월', highlight: true },

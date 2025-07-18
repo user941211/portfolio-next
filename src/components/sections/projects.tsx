@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, Badge, Button, ImagePlaceholder } from '@/components/ui';
+import { Card, Badge, Button } from '@/components/ui';
 
 const projects = [
   {
@@ -34,10 +34,10 @@ const projects = [
       '24시간 무중단 서비스 운영',
       '장애율 1% 이하 달성',
     ],
+    mainImage: '/images/projects/pbos/main.png',
     images: [
-      { type: 'main', alt: 'PBOS 메인 대시보드' },
-      { type: 'monitoring', alt: '실시간 모니터링 화면' },
-      { type: 'admin', alt: '관리자 프로그램' },
+      { src: '/images/projects/pbos/main.png', alt: 'PBOS 메인 대시보드' },
+      { src: '/images/projects/pbos/monitoring.png', alt: '실시간 모니터링 화면' },
     ],
   },
   {
@@ -69,9 +69,10 @@ const projects = [
       '실시간 영상 분석 파이프라인 구축',
       '높은 정확도로 상용 서비스 적용',
     ],
+    mainImage: '/images/projects/ai-parking/detection.png',
     images: [
-      { type: 'detection', alt: 'YOLO 객체 탐지 결과' },
-      { type: 'training', alt: '모델 학습 결과 그래프' },
+      { src: '/images/projects/ai-parking/detection.png', alt: 'YOLO 객체 탐지 결과' },
+      { src: '/images/projects/ai-parking/training.png', alt: '모델 학습 결과 그래프' },
     ],
   },
   {
@@ -103,9 +104,9 @@ const projects = [
       '자동 백업 시스템으로 데이터 안전성 확보',
       '모듈화된 구조로 확장성 제공',
     ],
+    mainImage: '/images/projects/monitoring/dashboard.png',
     images: [
-      { type: 'dashboard', alt: '시스템 모니터링 대시보드' },
-      { type: 'alerts', alt: '알림 및 로그 시스템' },
+      { src: '/images/projects/monitoring/dashboard.png', alt: '시스템 모니터링 대시보드' },
     ],
   }
 ];
@@ -195,12 +196,10 @@ export default function ProjectsSection() {
                 >
                   {/* 프로젝트 이미지 */}
                   <div className="aspect-video overflow-hidden">
-                    <ImagePlaceholder
-                      variant="project"
-                      width="100%"
-                      height="100%"
-                      text={`${project.title} 스크린샷`}
-                      className="hover:scale-105 transition-transform duration-300"
+                    <img
+                      src={project.mainImage}
+                      alt={`${project.title} 스크린샷`}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 
@@ -307,12 +306,13 @@ export default function ProjectsSection() {
                         {/* 프로젝트 이미지들 */}
                         <div className="grid md:grid-cols-2 gap-4">
                           {project.images.map((image, index) => (
-                            <ImagePlaceholder
-                              key={index}
-                              variant="project"
-                              height="200px"
-                              text={image.alt}
-                            />
+                            <div key={index} className="overflow-hidden rounded-lg">
+                              <img
+                                src={image.src}
+                                alt={image.alt}
+                                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                              />
+                            </div>
                           ))}
                         </div>
 

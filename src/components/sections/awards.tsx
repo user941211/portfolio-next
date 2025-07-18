@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, Badge, ImagePlaceholder } from '@/components/ui';
+import { Card, Badge } from '@/components/ui';
 
 const awards = [
   {
@@ -142,12 +142,10 @@ export default function AwardsSection() {
                   <Card variant="elevated" hover="lift" className="overflow-hidden h-full">
                     {/* 수상 사진 */}
                     <div className="aspect-video overflow-hidden">
-                      <ImagePlaceholder
-                        variant="award"
-                        width="100%"
-                        height="100%"
-                        text={`${award.title} 수상 사진`}
-                        className="hover:scale-105 transition-transform duration-300"
+                      <img
+                        src={award.image}
+                        alt={`${award.title} 수상 사진`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
 

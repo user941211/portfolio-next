@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, Progress, ImagePlaceholder } from '@/components/ui';
+import { Card, Progress } from '@/components/ui';
 
 const skillCategories = [
   {
@@ -161,13 +161,9 @@ export default function SkillsSection() {
                       <Card variant="outlined" hover="lift" className="p-6 h-full">
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-12 h-12 flex-center rounded-lg bg-primary/10">
-                            <ImagePlaceholder
-                              variant="tech"
-                              width="32px"
-                              height="32px"
-                              text=""
-                              className="rounded"
-                            />
+                            <span className="text-lg font-bold text-primary">
+                              {skill.name.charAt(0)}
+                            </span>
                           </div>
                           <div className="flex-1">
                             <h4 className="font-semibold text-lg">{skill.name}</h4>
