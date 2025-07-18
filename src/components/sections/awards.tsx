@@ -18,7 +18,7 @@ const awards = [
       '상금 600만원과 함께 사업화 지원 혜택 제공',
     ],
     skills: ['기획', '발표', '팀워크', '혁신'],
-    image: 'gongdae.c1c02c566218a96263a4.jpg',
+    image: '/images/awards/startup-challenge.jpg',
     category: 'competition',
   },
   {
@@ -35,7 +35,7 @@ const awards = [
       '학회장 김영철 회장으로부터 직접 시상',
     ],
     skills: ['연구', '논문작성', 'AI', 'IoT'],
-    image: 'award_2.3fc8a8e399da2dc7c7ff.jpg',
+    image: '/images/awards/digital-contents.jpg',
     category: 'academic',
   },
 ];

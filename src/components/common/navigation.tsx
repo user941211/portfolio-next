@@ -19,7 +19,7 @@ const navItems: NavItem[] = [
   { id: 'about', label: '소개', href: '#about' },
   { id: 'skills', label: '기술', href: '#skills' },
   { id: 'projects', label: '프로젝트', href: '#projects' },
-  { id: 'experience', label: '경력', href: '#experience' },
+
   { id: 'awards', label: '수상', href: '#awards' },
   { id: 'contact', label: '연락', href: '#contact' },
 ];

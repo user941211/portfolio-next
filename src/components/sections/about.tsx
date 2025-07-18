@@ -83,7 +83,7 @@ export default function AboutSection() {
                 <div className="mb-6">
                   <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 border-4 border-primary/30">
                     <img
-                      src="/images/profile/placeholder-profile.svg"
+                      src="/images/profile/profile.jpg"
                       alt="변재성 프로필 사진"
                       className="w-full h-full object-cover"
                     />

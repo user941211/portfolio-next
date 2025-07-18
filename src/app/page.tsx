@@ -4,6 +4,7 @@ import SkillsSection from '@/components/sections/skills';
 import ProjectsSection from '@/components/sections/projects';
 import AwardsSection from '@/components/sections/awards';
 import { ContactSection } from '@/components/sections/contact';
+import { Footer } from '@/components/common';
 
 export default function HomePage() {
   return (
@@ -25,6 +26,9 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <ContactSection />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

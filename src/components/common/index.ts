@@ -1,2 +1,3 @@
 // 공통 컴포넌트들
-export * from './navigation'; 
+export { Navigation } from './navigation';
+export { Footer } from './footer'; 
