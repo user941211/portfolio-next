@@ -78,8 +78,8 @@ export function ContactSection() {
     {
       icon: '📱',
       label: '연락처',
-      value: '010-0000-0000',
-      link: 'tel:010-0000-0000',
+      value: '010-2584-3311',
+      link: 'tel:010-2584-3311',
     },
     {
       icon: '🏢',
