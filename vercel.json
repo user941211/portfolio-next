@@ -4,27 +4,11 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "env": {
-    "SITE_URL": "@site-url"
-  },
-  "build": {
-    "env": {
-      "EMAIL_USER": "@email-user",
-      "EMAIL_PASS": "@email-pass",
-      "SITE_URL": "@site-url"
-    }
-  },
   "functions": {
     "src/app/api/**/*.ts": {
       "runtime": "nodejs18.x"
     }
   },
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/index"
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
