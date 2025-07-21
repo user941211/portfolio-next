@@ -13,6 +13,7 @@ export function ContactSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showBlogAlert, setShowBlogAlert] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,6 +46,16 @@ export function ContactSection() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  // 블로그 클릭 핸들러
+  const handleBlogClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowBlogAlert(true);
+    // 3초 후 알림 숨기기
+    setTimeout(() => {
+      setShowBlogAlert(false);
+    }, 3000);
   };
 
   const containerVariants = {
@@ -169,23 +180,55 @@ export function ContactSection() {
               {/* 소셜 링크 */}
               <div>
                 <h4 className="text-lg font-semibold mb-4">소셜 링크</h4>
+                
+                {/* 블로그 알림 메시지 */}
+                {showBlogAlert && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="mb-4 p-3 rounded-lg bg-orange-50 border border-orange-200 text-orange-800 text-sm"
+                  >
+                    📝 아직 notion 정리가 완료되지 않았습니다.
+                  </motion.div>
+                )}
+                
                 <div className="grid grid-cols-2 gap-3">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center space-x-3 p-3 rounded-lg bg-card border hover:border-primary/50 transition-all duration-200 hover:shadow-md group"
-                    >
-                      <span className="text-lg group-hover:scale-110 transition-transform">
-                        {social.icon}
-                      </span>
-                      <span className="font-medium group-hover:text-primary transition-colors">
-                        {social.label}
-                      </span>
-                    </a>
-                  ))}
+                  {socialLinks.map((social, index) => {
+                    if (social.label === '블로그') {
+                      return (
+                        <button
+                          key={index}
+                          onClick={handleBlogClick}
+                          className="flex items-center space-x-3 p-3 rounded-lg bg-card border hover:border-primary/50 transition-all duration-200 hover:shadow-md group text-left"
+                        >
+                          <span className="text-lg group-hover:scale-110 transition-transform">
+                            {social.icon}
+                          </span>
+                          <span className="font-medium group-hover:text-primary transition-colors">
+                            {social.label}
+                          </span>
+                        </button>
+                      );
+                    }
+                    
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-3 p-3 rounded-lg bg-card border hover:border-primary/50 transition-all duration-200 hover:shadow-md group"
+                      >
+                        <span className="text-lg group-hover:scale-110 transition-transform">
+                          {social.icon}
+                        </span>
+                        <span className="font-medium group-hover:text-primary transition-colors">
+                          {social.label}
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
 
