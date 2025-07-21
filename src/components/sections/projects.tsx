@@ -108,6 +108,42 @@ const projects = [
     images: [
       { src: '/images/projects/monitoring/dashboard.png', alt: '시스템 모니터링 대시보드' },
     ],
+  },
+  {
+    id: 4,
+    title: '필드 엔지니어링 및 현장 설치 지원',
+    category: 'DevOps',
+    period: '2024.04 ~ 현재',
+    team: '1명',
+    role: '현장 설치·테스트·고객 커뮤니케이션',
+    description: '세종시·상주·산청 등 클라이언트 현장 출장을 통한 서버·네트워크 장비 및 Raspberry Pi 설치·교체·테스트',
+    longDescription: `
+      공공기관 및 기업 고객 현장에서 IT 인프라 구축과 장애 대응을 전담했습니다.
+      서버, 스토리지, 네트워크 장비, Raspberry Pi 등의 설치부터 성능 테스트, 
+      장애 복구까지 현장에서 직접 수행하며 고객과의 직접적인 소통을 통해 
+      요구사항을 실시간으로 반영했습니다.
+    `,
+    technologies: ['Linux 서버 운영', '네트워크 설정', '하드웨어 트러블슈팅', '매뉴얼 작성'],
+    achievements: [
+      '세종시·상주·산청 등 다수 현장 성공적 구축',
+      '현장 장애 대응 시간 최소화',
+      '고객 만족도 향상을 위한 맞춤형 설치',
+    ],
+    challenges: [
+      '다양한 현장 환경에 대한 신속한 적응',
+      '장애 발생 시 즉시 원인 분석 및 복구',
+      '고객 요구사항의 실시간 반영',
+    ],
+    results: [
+      '현장 설치 가이드 및 체크리스트 표준화',
+      '장애 대응 매뉴얼 및 FAQ 문서 체계 구축',
+      '고객 교육 세션을 통한 운영 효율성 강화',
+    ],
+    mainImage: '/images/projects/field-engineering/installation.png',
+    images: [
+      { src: '/images/projects/field-engineering/installation.png', alt: '현장 장비 설치' },
+      { src: '/images/projects/field-engineering/testing.png', alt: '시스템 테스트' },
+    ],
   }
 ];
 
