@@ -1,51 +1,51 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Card, Progress } from '@/components/ui';
+import { Card } from '@/components/ui';
 
 const skillCategories = [
   {
     title: 'Frontend',
     icon: '🎨',
     skills: [
-      { name: 'React', level: 90, description: '컴포넌트 기반 UI 개발에 능숙' },
-      { name: 'Next.js', level: 85, description: 'SSR, SSG 및 최적화 경험' },
-      { name: 'TypeScript', level: 80, description: '타입 안전성을 고려한 개발' },
-      { name: 'Tailwind CSS', level: 85, description: '효율적인 스타일링 구현' },
-      { name: 'JavaScript', level: 90, description: 'ES6+ 문법 및 모던 JS 활용' },
-      { name: 'Vue.js', level: 70, description: '기본적인 Vue 프로젝트 구현' },
+      { name: 'React', description: '컴포넌트 기반 UI 개발에 능숙' },
+      { name: 'Next.js', description: 'SSR, SSG 및 최적화 경험' },
+      { name: 'TypeScript', description: '타입 안전성을 고려한 개발' },
+      { name: 'Tailwind CSS', description: '효율적인 스타일링 구현' },
+      { name: 'JavaScript', description: 'ES6+ 문법 및 모던 JS 활용' },
+      { name: 'Vue.js', description: '기본적인 Vue 프로젝트 구현' },
     ]
   },
   {
     title: 'Backend',
     icon: '⚙️',
     skills: [
-      { name: 'Node.js', level: 85, description: 'RESTful API 및 서버 개발' },
-      { name: 'Python', level: 88, description: '데이터 처리 및 자동화 스크립트' },
-      { name: 'Dart', level: 82, description: 'Flutter 및 서버 사이드 개발' },
-      { name: 'Java', level: 75, description: '객체지향 프로그래밍 및 웹 개발' },
+      { name: 'Node.js', description: 'RESTful API 및 서버 개발' },
+      { name: 'Python', description: '데이터 처리 및 자동화 스크립트' },
+      { name: 'Dart', description: 'Flutter 및 서버 사이드 개발' },
+      { name: 'Java', description: '객체지향 프로그래밍 및 웹 개발' },
     ]
   },
   {
     title: 'Database',
     icon: '🗄️',
     skills: [
-      { name: 'PostgreSQL', level: 85, description: '고급 쿼리 및 최적화' },
-      { name: 'SQLite', level: 90, description: '임베디드 DB 설계 및 관리' },
-      { name: 'MySQL', level: 80, description: '관계형 DB 설계 및 운영' },
-      { name: 'MongoDB', level: 70, description: 'NoSQL 기본 구조 이해' },
+      { name: 'PostgreSQL', description: '고급 쿼리 및 최적화' },
+      { name: 'SQLite', description: '임베디드 DB 설계 및 관리' },
+      { name: 'MySQL', description: '관계형 DB 설계 및 운영' },
+      { name: 'MongoDB', description: 'NoSQL 기본 구조 이해' },
     ]
   },
   {
     title: 'AI & Tools',
     icon: '🤖',
     skills: [
-      { name: 'YOLOv8', level: 85, description: '객체 탐지 모델 학습 및 튜닝' },
-      { name: 'OpenCV', level: 80, description: '영상 처리 및 컴퓨터 비전' },
-      { name: 'DeepStream', level: 82, description: '실시간 영상 분석 파이프라인' },
-      { name: 'Linux', level: 88, description: '서버 구축 및 시스템 관리' },
-      { name: 'Docker', level: 75, description: '컨테이너화 및 배포' },
-      { name: 'Git/GitHub', level: 90, description: '버전 관리 및 협업' },
+      { name: 'YOLOv8', description: '객체 탐지 모델 학습 및 튜닝' },
+      { name: 'OpenCV', description: '영상 처리 및 컴퓨터 비전' },
+      { name: 'DeepStream', description: '실시간 영상 분석 파이프라인' },
+      { name: 'Linux', description: '서버 구축 및 시스템 관리' },
+      { name: 'Docker', description: '컨테이너화 및 배포' },
+      { name: 'Git/GitHub', description: '버전 관리 및 협업' },
     ]
   }
 ];
@@ -161,22 +161,12 @@ export default function SkillsSection() {
                       <Card variant="outlined" hover="lift" className="p-6 h-full">
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-12 h-12 flex-center rounded-lg bg-primary/10">
-                            <span className="text-lg font-bold text-primary">
+                            <span className="text-xl font-bold text-primary">
                               {skill.name.charAt(0)}
                             </span>
                           </div>
                           <div className="flex-1">
-                            <h4 className="font-semibold text-lg">{skill.name}</h4>
-                            <div className="flex items-center gap-2 mt-1">
-                              <Progress 
-                                value={skill.level} 
-                                className="flex-1 h-2" 
-                                animated 
-                              />
-                              <span className="text-sm font-medium text-primary">
-                                {skill.level}%
-                              </span>
-                            </div>
+                            <h4 className="font-semibold text-xl">{skill.name}</h4>
                           </div>
                         </div>
                         <p className="text-sm text-muted-foreground">
