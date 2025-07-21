@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, Badge, Button } from '@/components/ui';
 
 const projects = [
@@ -118,7 +118,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
@@ -129,7 +130,14 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -30,
+    transition: {
+      duration: 0.3,
     },
   },
 };
@@ -137,10 +145,21 @@ const itemVariants = {
 export default function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
 
-  const filteredProjects = selectedCategory === '전체' 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory);
+  // 카테고리 변경 시 필터링된 프로젝트 업데이트
+  useEffect(() => {
+    const filtered = selectedCategory === '전체' 
+      ? projects 
+      : projects.filter(project => project.category === selectedCategory);
+    
+    setFilteredProjects(filtered);
+  }, [selectedCategory]);
+
+  // 카테고리 변경 핸들러
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <section id="projects" className="section-padding bg-secondary/10">
@@ -169,7 +188,7 @@ export default function ProjectsSection() {
                   key={category}
                   variant={selectedCategory === category ? 'default' : 'ghost'}
                   size="sm"
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => handleCategoryChange(category)}
                   className="transition-all duration-200"
                 >
                   {category}
@@ -179,88 +198,111 @@ export default function ProjectsSection() {
           </motion.div>
 
           {/* 프로젝트 그리드 */}
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                variants={itemVariants}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <Card 
-                  variant="elevated" 
-                  hover="lift" 
-                  interactive
-                  className="h-full cursor-pointer"
-                  onClick={() => setSelectedProject(project.id)}
+          <motion.div
+            layout
+            className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="wait">
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={`${selectedCategory}-${project.id}`}
+                  layout
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  {/* 프로젝트 이미지 */}
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={project.mainImage}
-                      alt={`${project.title} 스크린샷`}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="p-6 space-y-4">
-                    {/* 카테고리와 기간 */}
-                    <div className="flex justify-between items-start">
-                      <Badge variant="primary">{project.category}</Badge>
-                      <span className="text-xs text-muted-foreground">
-                        {project.period}
-                      </span>
+                  <Card 
+                    variant="elevated" 
+                    hover="lift" 
+                    interactive
+                    className="h-full cursor-pointer"
+                    onClick={() => setSelectedProject(project.id)}
+                  >
+                    {/* 프로젝트 이미지 */}
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={project.mainImage}
+                        alt={`${project.title} 스크린샷`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
 
-                    {/* 제목과 역할 */}
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2 line-clamp-2">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-primary font-medium">
-                        {project.role}
+                    <div className="p-6 space-y-4">
+                      {/* 카테고리와 기간 */}
+                      <div className="flex justify-between items-start">
+                        <Badge variant="primary">{project.category}</Badge>
+                        <span className="text-xs text-muted-foreground">
+                          {project.period}
+                        </span>
+                      </div>
+
+                      {/* 제목과 역할 */}
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2 line-clamp-2">
+                          {project.title}
+                        </h3>
+                        <p className="text-sm text-primary font-medium">
+                          {project.role}
+                        </p>
+                      </div>
+
+                      {/* 설명 */}
+                      <p className="text-sm text-muted-foreground line-clamp-3">
+                        {project.description}
                       </p>
-                    </div>
 
-                    {/* 설명 */}
-                    <p className="text-sm text-muted-foreground line-clamp-3">
-                      {project.description}
-                    </p>
-
-                    {/* 기술 스택 */}
-                    <div className="flex flex-wrap gap-1">
-                      {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                        <span 
-                          key={techIndex} 
-                          className="badge-base badge-secondary text-xs"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="badge-base badge-outline text-xs">
-                          +{project.technologies.length - 4}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* 주요 성과 */}
-                    <div className="pt-2 border-t">
-                      <h5 className="text-sm font-semibold mb-2">주요 성과</h5>
-                      <ul className="text-xs text-muted-foreground space-y-1">
-                        {project.achievements.slice(0, 2).map((achievement, achIndex) => (
-                          <li key={achIndex} className="flex items-start gap-1">
-                            <span className="text-primary mt-0.5">•</span>
-                            <span>{achievement}</span>
-                          </li>
+                      {/* 기술 스택 */}
+                      <div className="flex flex-wrap gap-1">
+                        {project.technologies.slice(0, 4).map((tech, techIndex) => (
+                          <span 
+                            key={techIndex} 
+                            className="badge-base badge-secondary text-xs"
+                          >
+                            {tech}
+                          </span>
                         ))}
-                      </ul>
+                        {project.technologies.length > 4 && (
+                          <span className="badge-base badge-outline text-xs">
+                            +{project.technologies.length - 4}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* 주요 성과 */}
+                      <div className="pt-2 border-t">
+                        <h5 className="text-sm font-semibold mb-2">주요 성과</h5>
+                        <ul className="text-xs text-muted-foreground space-y-1">
+                          {project.achievements.slice(0, 2).map((achievement, achIndex) => (
+                            <li key={achIndex} className="flex items-start gap-1">
+                              <span className="text-primary mt-0.5">•</span>
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* 필터링 결과가 없을 때 안내 메시지 */}
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-12"
+            >
+              <div className="text-muted-foreground">
+                <p className="text-lg mb-2">해당 카테고리의 프로젝트가 없습니다.</p>
+                <p className="text-sm">다른 카테고리를 선택해보세요.</p>
+              </div>
+            </motion.div>
+          )}
 
           {/* 프로젝트 상세 모달 (간단한 버전) */}
           {selectedProject && (
