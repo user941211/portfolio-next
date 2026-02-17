@@ -1,11 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, Badge } from '@/components/ui';
 
 const stats = [
   { label: '총 경력', value: '2년 1개월', highlight: true },
-  { label: '주요 프로젝트', value: '4개', highlight: false },
+  { label: '주요 프로젝트', value: '5개', highlight: false },
   { label: '기술 스택', value: '15+', highlight: false },
   { label: '수상 경력', value: '3건', highlight: true },
 ];
@@ -81,11 +82,14 @@ export default function AboutSection() {
               {/* 프로필 사진과 기본 정보 */}
               <Card variant="elevated" className="text-center p-8">
                 <div className="mb-6">
-                  <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 border-4 border-primary/30">
-                    <img
+                  <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20 border-4 border-primary/30">
+                    <Image
                       src="/images/profile/profile.jpg"
                       alt="변재성 프로필 사진"
-                      className="w-full h-full object-cover"
+                      fill
+                      sizes="192px"
+                      className="object-cover"
+                      priority
                     />
                   </div>
                 </div>

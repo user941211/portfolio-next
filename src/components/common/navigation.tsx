@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -30,7 +29,6 @@ export function Navigation() {
   const [activeSection, setActiveSection] = React.useState('home');
   const [mounted, setMounted] = React.useState(false);
   const { theme, setTheme } = useTheme();
-  const pathname = usePathname();
 
   React.useEffect(() => {
     setMounted(true);

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Image from 'next/image';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
@@ -215,11 +216,13 @@ const ProjectCard = React.forwardRef<
     {...props}
   >
     {image && (
-      <div className="aspect-video w-full overflow-hidden">
-        <img
+      <div className="relative aspect-video w-full overflow-hidden">
+        <Image
           src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+          alt={title || 'Project image'}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover transition-transform duration-300 hover:scale-105"
         />
       </div>
     )}

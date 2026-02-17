@@ -159,7 +159,7 @@ export function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span>대한민국, 서울</span>
+                <span>대한민국, 대구</span>
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@ export function Footer() {
                 <span>& Next.js</span>
               </span>
               <span>•</span>
-              <span>Version 2024</span>
+              <span>Updated 2026</span>
             </div>
           </div>
         </div>

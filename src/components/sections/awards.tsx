@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, Badge } from '@/components/ui';
 
@@ -141,11 +142,13 @@ export default function AwardsSection() {
                 >
                   <Card variant="elevated" hover="lift" className="overflow-hidden h-full">
                     {/* 수상 사진 */}
-                    <div className="aspect-video overflow-hidden">
-                      <img
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
                         src={award.image}
                         alt={`${award.title} 수상 사진`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
 

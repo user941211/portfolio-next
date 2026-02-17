@@ -91,6 +91,8 @@ module.exports = {
           foreground: 'hsl(var(--info-foreground))',
         },
         success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
           50: '#f0fdf4',
           100: '#dcfce7',
           200: '#bbf7d0',
@@ -103,6 +105,8 @@ module.exports = {
           900: '#14532d',
         },
         warning: {
+          DEFAULT: 'hsl(var(--warning))',
+          foreground: 'hsl(var(--warning-foreground))',
           50: '#fffbeb',
           100: '#fef3c7',
           200: '#fde68a',
@@ -115,6 +119,8 @@ module.exports = {
           900: '#78350f',
         },
         error: {
+          DEFAULT: 'hsl(var(--error))',
+          foreground: 'hsl(var(--error-foreground))',
           50: '#fef2f2',
           100: '#fee2e2',
           200: '#fecaca',
@@ -125,6 +131,20 @@ module.exports = {
           700: '#b91c1c',
           800: '#991b1b',
           900: '#7f1d1d',
+        },
+        info: {
+          DEFAULT: 'hsl(var(--info))',
+          foreground: 'hsl(var(--info-foreground))',
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
         },
       },
       borderRadius: {

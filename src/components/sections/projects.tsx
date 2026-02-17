@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Card, Badge, Button } from '@/components/ui';
 
@@ -144,7 +145,43 @@ const projects = [
       { src: '/images/projects/field-engineering/installation.png', alt: '현장 장비 설치' },
       { src: '/images/projects/field-engineering/testing.png', alt: '시스템 테스트' },
     ],
-  }
+  },
+  {
+    id: 5,
+    title: 'Parkee 주차장 서비스 (관리자 웹 + 사용자 앱)',
+    category: 'IoT',
+    period: '운영 중',
+    team: '팀 프로젝트',
+    role: '서비스 운영 및 앱/웹 고도화',
+    description: '관리자용 웹과 사용자용 모바일 앱으로 구성된 주차장 서비스 구축 및 운영',
+    longDescription: `
+      Parkee 주차장 서비스는 관리자 웹과 사용자 모바일 앱을 함께 운영하는 주차 플랫폼입니다.
+      관리자 웹에서 주차장 상태와 운영 정보를 관리하고, 사용자 앱에서 주차 관련 기능을 제공합니다.
+      "Parkee 주차장" 앱은 Google Play 스토어에 업로드되어 실제 사용자 대상 서비스로 운영 중입니다.
+    `,
+    technologies: ['Flutter', 'Dart', '관리자 웹', '사용자 앱', 'Google Play'],
+    achievements: [
+      '관리자 웹과 사용자 앱을 단일 서비스로 통합 운영',
+      'Google Play 스토어에 "Parkee 주차장" 앱 배포',
+      '실사용 기반 서비스 운영 프로세스 구축',
+    ],
+    challenges: [
+      '웹 관리자 기능과 앱 사용자 기능 간 데이터 일관성 확보',
+      '운영 단계에서 발생하는 사용자 피드백의 빠른 반영',
+      '실서비스 배포 이후 안정적인 유지보수 체계 정립',
+    ],
+    results: [
+      '운영/사용자 관점의 기능 분리로 관리 효율 향상',
+      '스토어 배포를 통한 서비스 접근성 확대',
+      '실제 운영 데이터를 기반으로 지속적인 개선 사이클 확보',
+    ],
+    mainImage: '/images/projects/parkee/parkee-screen-1.png',
+    images: [
+      { src: '/images/projects/parkee/parkee-screen-1.png', alt: 'Parkee 서비스 화면 1' },
+      { src: '/images/projects/parkee/parkee-screen-2.png', alt: 'Parkee 서비스 화면 2' },
+      { src: '/images/projects/parkee/parkee-screen-3.png', alt: 'Parkee 서비스 화면 3' },
+    ],
+  },
 ];
 
 const categories = ['전체', 'IoT', 'AI', 'DevOps'];
@@ -181,16 +218,13 @@ const itemVariants = {
 export default function ProjectsSection() {
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-
-  // 카테고리 변경 시 필터링된 프로젝트 업데이트
-  useEffect(() => {
-    const filtered = selectedCategory === '전체' 
-      ? projects 
-      : projects.filter(project => project.category === selectedCategory);
-    
-    setFilteredProjects(filtered);
-  }, [selectedCategory]);
+  const filteredProjects = useMemo(
+    () =>
+      selectedCategory === '전체'
+        ? projects
+        : projects.filter((project) => project.category === selectedCategory),
+    [selectedCategory]
+  );
 
   // 카테고리 변경 핸들러
   const handleCategoryChange = (category: string) => {
@@ -239,7 +273,7 @@ export default function ProjectsSection() {
             className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8"
           >
             <AnimatePresence mode="wait">
-              {filteredProjects.map((project, index) => (
+              {filteredProjects.map((project) => (
                 <motion.div
                   key={`${selectedCategory}-${project.id}`}
                   layout
@@ -258,11 +292,13 @@ export default function ProjectsSection() {
                     onClick={() => setSelectedProject(project.id)}
                   >
                     {/* 프로젝트 이미지 */}
-                    <div className="aspect-video overflow-hidden">
-                      <img
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
                         src={project.mainImage}
                         alt={`${project.title} 스크린샷`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        fill
+                        sizes="(max-width: 1280px) 100vw, 33vw"
+                        className="object-cover hover:scale-105 transition-transform duration-300"
                       />
                     </div>
 
@@ -384,11 +420,13 @@ export default function ProjectsSection() {
                         {/* 프로젝트 이미지들 */}
                         <div className="grid md:grid-cols-2 gap-4">
                           {project.images.map((image, index) => (
-                            <div key={index} className="overflow-hidden rounded-lg">
-                              <img
+                            <div key={index} className="relative h-48 overflow-hidden rounded-lg">
+                              <Image
                                 src={image.src}
                                 alt={image.alt}
-                                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                className="object-cover hover:scale-105 transition-transform duration-300"
                               />
                             </div>
                           ))}
@@ -406,8 +444,8 @@ export default function ProjectsSection() {
                         <div>
                           <h4 className="text-lg font-semibold mb-3">사용 기술</h4>
                           <div className="flex flex-wrap gap-2">
-                                                  {project.technologies.map((tech, index) => (
-                                <Badge key={index} variant="outline">
+                            {project.technologies.map((tech, index) => (
+                              <Badge key={index} variant="outline">
                                 {tech}
                               </Badge>
                             ))}
