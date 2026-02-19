@@ -112,7 +112,7 @@ export function HeroSection() {
             className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed"
           >
             <span className="block mb-2">
-              <strong className="text-primary">풀스택 개발자</strong> & <strong className="text-accent">AI 엔지니어</strong>
+              <strong className="text-primary">풀스택 개발자</strong> & <strong className="text-primary-700 dark:text-primary-300">AI 엔지니어</strong>
             </span>
             <span className="block text-lg">
               스마트 파킹 시스템과 영상처리 AI를 개발하며, 
